@@ -11,15 +11,49 @@ import java.io.IOException;
 public class LogWriter {
 
     public static void write(Context context,String msg){
-        String logFile = SessionManager.getFilePath(context);
-        if (isFirst) {
-            String vers = checkFirstLog(context);
-            if (vers != null) {
-                print(logFile,vers);
-            }
-        }
-        print(logFile,msg);
+        write(context, msg,null);
     }
+    public static void write(Context context,String msg,Throwable exception){
+        String logFile = SessionManager.getFilePath(context);
+
+        if (exception == null) {
+            if (isFirst) {
+                String vers = checkFirstLog(context);
+                if (vers != null) {
+                    print(logFile, vers);
+                }
+            }
+            print(logFile,msg);
+        }else{
+            StringBuilder builder = new StringBuilder();
+            if (isFirst) {
+                String vers = checkFirstLog(context);
+                if (vers != null) {
+                    builder.append(vers)
+                            .append("\n");
+                }
+            }
+            builder.append(msg)
+                    .append("\n");
+            processThrowable(exception, builder);
+            print(logFile,builder.toString());
+        }
+
+    }
+
+    private static void processThrowable(Throwable exception, StringBuilder builder) {
+        if(exception == null)
+            return;
+        StackTraceElement[] stackTraceElements = exception.getStackTrace();
+        builder
+                .append("Exception: ").append(exception.getClass().getName()).append("\n")
+                .append("Message: ").append(exception.getMessage()).append("\nStacktrace:\n");
+        for(StackTraceElement element : stackTraceElements) {
+            builder.append("\t").append(element.toString()).append("\n");
+        }
+        processThrowable(exception.getCause(), builder);
+    }
+
 
     private static void print(String logFile, String msg){
         try {
