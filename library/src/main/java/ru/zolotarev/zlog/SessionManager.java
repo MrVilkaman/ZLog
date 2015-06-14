@@ -40,10 +40,10 @@ public class SessionManager {
         ApplicationInfo ai;
         try {
             ai = pm.getApplicationInfo(context.getPackageName(), 0);
+
         } catch (final PackageManager.NameNotFoundException e) {
             ai = null;
         }
         return  (ai != null ? pm.getApplicationLabel(ai).toString() : Constants.DEFAULT_APP_NAME);
     }
-
 }
