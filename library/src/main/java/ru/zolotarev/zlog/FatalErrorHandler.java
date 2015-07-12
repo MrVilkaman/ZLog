@@ -1,7 +1,6 @@
 package ru.zolotarev.zlog;
 
 import android.content.Context;
-import android.util.Log;
 
 public class FatalErrorHandler implements Thread.UncaughtExceptionHandler  {
     private final Thread.UncaughtExceptionHandler previousHandler;
@@ -18,8 +17,6 @@ public class FatalErrorHandler implements Thread.UncaughtExceptionHandler  {
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
-        Log.d("TAG","it is work!!");
-
         LogWriter.write(context,"FATAL EXCEPTION",ex);
         if(previousHandler != null)
             previousHandler.uncaughtException(thread, ex);
