@@ -4,6 +4,12 @@ android {
     compileSdkVersion 22
     buildToolsVersion "23.0.0 rc2"
 
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+        }
+    }
+
     defaultConfig {
         applicationId "ru.zolotarev.zlog.sample"
         minSdkVersion 10

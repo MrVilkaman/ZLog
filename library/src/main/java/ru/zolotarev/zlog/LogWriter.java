@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -57,7 +58,12 @@ public class LogWriter {
 
     private static void print(String logFile, String msg){
         try {
-            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile,
+	        File file = new File(logFile);
+	        if (!file.exists()) {
+		        file.createNewFile();
+	        }
+
+            BufferedWriter buf = new BufferedWriter(new FileWriter(file,
                     true));
             buf.append(msg);
             buf.newLine();
