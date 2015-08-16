@@ -13,10 +13,10 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 8
         targetSdkVersion 22
-        versionCode 2
-        versionName "0.2"
+        versionCode 3
+        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -26,8 +26,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
 
     androidTestCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test:testing-support-lib:0.1') {
