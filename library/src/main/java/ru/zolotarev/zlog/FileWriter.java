@@ -5,6 +5,8 @@ import android.os.Build;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FileWriter {
 
@@ -23,6 +25,11 @@ public class FileWriter {
 				return;
 			}
 		}
+
+		builder.append("*************************")
+		       .append("Time: ")
+		       .append(new SimpleDateFormat(Constants.DATE).format(new Date()))
+		       .append("\n");
 		if (aClass != null) {
 			builder.append("Location: ")
 			       .append(aClass.getClass().getSimpleName());

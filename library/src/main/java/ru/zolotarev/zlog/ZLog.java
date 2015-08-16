@@ -26,9 +26,9 @@ public class ZLog {
 		if (enable) {
 			if (trackInRelease) {
 				ConsoleWriter.write(TAG, text, e, aClass);
-			}
-			if (context != null) {
-				FileWriter.write(context,text, e, aClass);
+				if (context != null) {
+					FileWriter.write(context,text, e, aClass);
+				}
 			}
 		}
 	}
@@ -46,7 +46,7 @@ public class ZLog {
 	}
 
 	public static void i(String text, Throwable e, Object aClass){
-		if (trackInRelease) {
+		if (enable && trackInRelease) {
 			ConsoleWriter.write(TAG, text, e, aClass);
 		}
 	}
@@ -64,11 +64,13 @@ public class ZLog {
 	}
 
 	public static void e(String text, Throwable e, Object aClass){
-		if (trackInRelease) {
-			ConsoleWriter.write(TAG, text, e, aClass);
-		}
-		if (context != null) {
-			FileWriter.write(context,text, e, aClass);
+		if (enable) {
+			if (trackInRelease) {
+				ConsoleWriter.write(TAG, text, e, aClass);
+			}
+			if (context != null) {
+				FileWriter.write(context, text, e, aClass);
+			}
 		}
 	}
 

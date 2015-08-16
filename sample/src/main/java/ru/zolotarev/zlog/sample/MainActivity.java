@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         ZLog.trackFatalErrors(this);
 
 	    ZLog.setEnable(true);
-	    ZLog.setBuildContig(BuildConfig.DEBUG);
+//	    ZLog.setBuildContig(BuildConfig.DEBUG);
 
 	    ZLog.i("Simple text only in console");
 	    ZLog.i("Simple text only in console with class location",this);
