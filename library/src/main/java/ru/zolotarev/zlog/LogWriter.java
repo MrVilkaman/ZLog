@@ -61,6 +61,7 @@ public class LogWriter {
     }
 
     private static boolean isFirst = true;
+
     private static String checkFirstLog(Context context){
         try {
             PackageInfo pack = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_ACTIVITIES);
