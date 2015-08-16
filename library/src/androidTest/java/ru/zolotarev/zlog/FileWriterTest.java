@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class LogWriterTest {
+public class FileWriterTest {
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();

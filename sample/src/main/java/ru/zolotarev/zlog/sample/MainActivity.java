@@ -13,24 +13,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ZLog.trackFatalErrors(this);
 
-	    ZLog.d("Simple text");
-	    ZLog.d("Simple text with class",this);
+	    ZLog.setEnable(true);
+	    ZLog.setBuildContig(BuildConfig.DEBUG);
 
-	    int i = 0;
+	    ZLog.i("Simple text only in console");
+	    ZLog.i("Simple text only in console with class location",this);
+
+	    ZLog.d("Simple text to file and console");
+
+	    int value = 45;
 	    try {
-		    int x = 35/0;
+		    value /= 0;
 	    } catch (Exception e) {
-		    ZLog.d("Simple text with Exception",e);
-		    ZLog.d("Simple text with Exception",e,this);
-
+		    ZLog.d("Math operation",e);
 	    }
 
-	    ZLog.setEnabled(false);
-	    ZLog.d("setEnabled(false)");
+	    Object o = null;
+	    o.toString();
 
-
-        Object o = null;
-        o.toString();
     }
 
 }

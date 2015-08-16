@@ -17,7 +17,7 @@ public class FatalErrorHandler implements Thread.UncaughtExceptionHandler  {
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
-        LogWriter.write(context,"FATAL EXCEPTION",ex);
+        FileWriter.write(context, "FATAL EXCEPTION", ex,null);
         if(previousHandler != null)
             previousHandler.uncaughtException(thread, ex);
     }

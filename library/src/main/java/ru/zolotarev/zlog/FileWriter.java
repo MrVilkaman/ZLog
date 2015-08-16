@@ -6,13 +6,11 @@ import android.os.Build;
 import java.io.File;
 import java.io.IOException;
 
-public class LogWriter {
+public class FileWriter {
 
-	static void write(Context context,String msg){
-		write(context, msg,null);
-	}
 
-	static void write(Context context,String msg,Throwable exception){
+	static void write(Context context,String text, Throwable exception, Object aClass){
+
 		String logFile = SessionManager.getFilePath(context);
 		File file = new File(logFile);
 		StringBuilder builder = new StringBuilder();
@@ -25,8 +23,13 @@ public class LogWriter {
 				return;
 			}
 		}
+		if (aClass != null) {
+			builder.append("Location: ")
+			       .append(aClass.getClass().getSimpleName());
+		}
+
 		builder.append("\n");
-		builder.append(msg);
+		builder.append(text);
 		builder.append("\n");
 
 		if (exception != null) {

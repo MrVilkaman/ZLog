@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-		LogWriterTest.class
+		FileWriterTest.class
 })
 public class TestStarter {
 }
