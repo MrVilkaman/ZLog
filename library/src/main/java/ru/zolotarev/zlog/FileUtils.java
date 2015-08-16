@@ -1,6 +1,23 @@
 package ru.zolotarev.zlog;
 
-class Utils {
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+class FileUtils {
+
+	static void print(File file, String msg){
+		try {
+			BufferedWriter buf = new BufferedWriter(new FileWriter(file,true));
+			buf.append(msg);
+			buf.newLine();
+			buf.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	static void processThrowable(Throwable exception, StringBuilder builder) {
 		if(exception == null)
 			return;

@@ -9,11 +9,15 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SessionManager {
+class SessionManager {
 
     private static String currentPath;
 
-    public static String getFilePath(Context context){
+	private static String getBasePath(Context context){
+		return Environment.getExternalStorageDirectory()+ File.separator + getAppName(context)+ File.separator;
+	}
+
+    static String getFilePath(Context context){
 
         if (currentPath == null) {
             currentPath = getBasePath(context);
@@ -29,10 +33,6 @@ public class SessionManager {
         }
 
         return currentPath;
-    }
-
-    private static String getBasePath(Context context){
-        return Environment.getExternalStorageDirectory()+ File.separator + getAppName(context)+ File.separator;
     }
 
     private static String getAppName(Context context) {

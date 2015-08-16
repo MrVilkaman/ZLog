@@ -37,6 +37,8 @@ proguard/
 *.idea
 .idea
 
+*.keystore
+
 # Windows thumbnail db
 Thumbs.db
 
