@@ -2,6 +2,7 @@ package ru.zolotarev.zlog;
 
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +11,8 @@ import java.util.Date;
 
 public class FileWriter {
 
+	private FileWriter() {
+	}
 
 	static void write(Context context,String text, Throwable exception, Object aClass){
 
@@ -22,6 +25,7 @@ public class FileWriter {
 				getDeviceInfo(builder);
 				builder.append("\n");
 			} catch (IOException e) {
+				Log.e(ZLog.tag, "Cann't write file", e);
 				return;
 			}
 		}

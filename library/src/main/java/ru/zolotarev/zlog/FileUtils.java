@@ -1,11 +1,16 @@
 package ru.zolotarev.zlog;
 
+import android.util.Log;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 class FileUtils {
+
+	private FileUtils() {
+	}
 
 	static void print(File file, String msg){
 		try {
@@ -14,7 +19,7 @@ class FileUtils {
 			buf.newLine();
 			buf.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.e(ZLog.tag,"Cann't write file",e);
 		}
 	}
 

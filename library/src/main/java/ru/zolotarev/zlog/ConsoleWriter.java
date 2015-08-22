@@ -4,7 +4,10 @@ import android.util.Log;
 
 public class ConsoleWriter {
 
-	static void write(final String TAG, String text, Throwable exception, Object aClass) {
+	private ConsoleWriter() {
+	}
+
+	static void write(final String tag, String text, Throwable exception, Object aClass) {
 
 		StringBuilder builder = new StringBuilder();
 
@@ -18,9 +21,9 @@ public class ConsoleWriter {
 		builder.append("\n");
 
 		if (exception != null) {
-			Log.d(TAG, builder.toString(),exception);
+			Log.d(tag, builder.toString(),exception);
 		}else{
-			Log.d(TAG,builder.toString());
+			Log.d(tag,builder.toString());
 		}
 
 

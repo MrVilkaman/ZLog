@@ -4,11 +4,15 @@ import android.content.Context;
 
 public class ZLog {
 
-	private static String TAG = "TAG";
+	@SuppressWarnings("squid:S1444")
+	static String tag = "TAG";
 
 	private static boolean trackInRelease = true;
 	private static boolean enable = true;
 	private static Context context;
+
+	private ZLog() {
+	}
 
 	public static void d(String text, Object aClass){
 		d(text, null, aClass);
@@ -23,12 +27,10 @@ public class ZLog {
 	}
 
 	public static void d(String text, Throwable e, Object aClass){
-		if (enable) {
-			if (trackInRelease) {
-				ConsoleWriter.write(TAG, text, e, aClass);
-				if (context != null) {
-					FileWriter.write(context,text, e, aClass);
-				}
+		if (enable && trackInRelease) {
+			ConsoleWriter.write(tag, text, e, aClass);
+			if (context != null) {
+				FileWriter.write(context,text, e, aClass);
 			}
 		}
 	}
@@ -47,7 +49,7 @@ public class ZLog {
 
 	public static void i(String text, Throwable e, Object aClass){
 		if (enable && trackInRelease) {
-			ConsoleWriter.write(TAG, text, e, aClass);
+			ConsoleWriter.write(tag, text, e, aClass);
 		}
 	}
 
@@ -66,7 +68,7 @@ public class ZLog {
 	public static void e(String text, Throwable e, Object aClass){
 		if (enable) {
 			if (trackInRelease) {
-				ConsoleWriter.write(TAG, text, e, aClass);
+				ConsoleWriter.write(tag, text, e, aClass);
 			}
 			if (context != null) {
 				FileWriter.write(context, text, e, aClass);
@@ -95,8 +97,8 @@ public class ZLog {
 		ZLog.trackInRelease = trackInRelease;
 	}
 
-	public static void setTAG(final String TAG) {
-		ZLog.TAG = TAG;
+	public static void setTag(final String tag) {
+		ZLog.tag = tag;
 	}
 
 	public static void setContext(final Context context) {
